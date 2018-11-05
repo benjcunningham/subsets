@@ -3,15 +3,16 @@ import pydub
 
 class SRT():
 
-    def __init__(self, path):
+    def __init__(self, path, **kwargs):
 
         self.path = path
-        self.subs = self.read(path)
+        self.subs = self.read(path, **kwargs)
 
 
-    def read(self, path, encoding):
+    @staticmethod
+    def read(path, **kwargs):
 
-        with open(path, "r", encoding=encoding) as file:
+        with open(path, "r", **kwargs) as file:
             subs = list(srt.parse(file.read()))
 
         return subs
