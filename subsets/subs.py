@@ -1,13 +1,8 @@
 import srt
 import pydub
 
+
 class Subset():
-
-    def __init__(self, subs=None, audio=None):
-
-        self.subs = subs
-        self.audio = audio
-
 
     def read_subs(self, path, **kwargs):
 
@@ -33,22 +28,22 @@ class Subset():
         splice = lambda split: self.audio[split[0]:split[1]]
 
         splits = [stamp(sub) for sub in self.subs]
-        audio = [splice(split) for split in splits]
+        self.splits = [splice(split) for split in splits]
 
-        return audio
+        return self
 
 
     def __len__(self):
 
-        return len(self.subs)
+        return len(self.splits)
 
 
     def __getitem__(self, index):
 
-        return self.subs[index]
+        return self.splits[index]
 
 
     def __iter__(self):
 
-        for sub in self.subs:
-            yield sub
+        for split in self.splits:
+            yield split
