@@ -1,1 +1,1 @@
-from subsets.subs import SRT
+from subsets.subset import Subset
