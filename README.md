@@ -1,4 +1,4 @@
 # subsets
 
-Creating speech-to-text datasets from subtitles.
+Create speech-to-text datasets from subtitles.
 
