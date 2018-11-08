@@ -5,6 +5,13 @@ from subsets import utils
 
 class TestUtils(unittest.TestCase):
 
+    def setUp(self):
+
+        path = "tests/test_files/test_sub.srt"
+        with open(path, "r") as file:
+            self.subs = list(srt.parse(file.read()))
+
+
     def test_msec(self):
         """Convert to milliseconds"""
 
@@ -19,12 +26,7 @@ class TestUtils(unittest.TestCase):
         """Get time bounds of subtitle"""
 
         expect = (137440, 140375)
-
-        path = "tests/test_files/test_sub.srt"
-        with open(path, "r") as file:
-            subs = list(srt.parse(file.read()))
-
-        result = utils.bound(subs[0])
+        result = utils.bound(self.subs[0])
 
         self.assertEqual(result, expect)
 
