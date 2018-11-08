@@ -1,6 +1,6 @@
 import srt
 import pydub
-from subset.utils import bound, msec
+from subsets.utils import bound, msec
 
 
 class Subset():
