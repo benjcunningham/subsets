@@ -42,7 +42,7 @@ class Subset():
         """
 
         bounds = [bound(sub) for sub in self.subs]
-        self.splits = [self.splice(bound) for bound in bounds]
+        self.splits = [self._split(bound) for bound in bounds]
 
         return self
 
