@@ -1,9 +1,24 @@
+"""Subset object
+"""
 import srt
 import pydub
-from subsets.utils import bound, msec
+from subsets.utils import bound
 
 
 class Subset():
+    """Subset object
+
+    Handles reading subtitles and audio into a unified object. Also
+    provides methods for splitting audio based on the timestamps of the
+    loaded subtitles.
+    """
+
+    def __init__(self):
+
+        self.subs = None
+        self.audio = None
+        self.splits = None
+
 
     def read_subs(self, path, **kwargs):
         """Read subtitle file
@@ -42,19 +57,19 @@ class Subset():
         """
 
         bounds = [bound(sub) for sub in self.subs]
-        self.splits = [self._split(bound) for bound in bounds]
+        self.splits = [self._split(bnd) for bnd in bounds]
 
         return self
 
 
-    def _split(self, bound):
+    def _split(self, bounds):
         """Split audio
 
         Split the object's audio given a tuple of bounds (i.e., start
         and end timestamps).
         """
 
-        start, end = bound
+        start, end = bounds
 
         return self.audio[start:end]
 
