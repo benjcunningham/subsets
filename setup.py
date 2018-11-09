@@ -1,5 +1,6 @@
+"""Subsets setup
+"""
 from setuptools import setup, find_packages
-import subsets
 
 
 LONG_DESC = open("README.md").read()
