@@ -12,6 +12,8 @@ before_install:
 
 install:
     - pip install -r requirements.txt
+    - pip install pylint
 
 script:
+    - pylint subsets tests setup.py
     - python setup.py test
