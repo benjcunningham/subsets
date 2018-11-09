@@ -1,3 +1,7 @@
+"""Utility functions
+"""
+
+
 def msec(time):
     """Convert to milliseconds
 
