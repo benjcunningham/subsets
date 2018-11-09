@@ -1,9 +1,13 @@
+"""Test utilities
+"""
 import unittest
 import datetime
 import srt
 from subsets import utils
 
+
 class TestUtils(unittest.TestCase):
+    """Tests of utility functions"""
 
     def setUp(self):
 

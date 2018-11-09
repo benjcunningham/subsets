@@ -1,3 +1,5 @@
+"""Test Subset class
+"""
 import unittest
 import pydub
 import srt
@@ -5,6 +7,7 @@ from subsets import Subset
 
 
 class TestSubset(unittest.TestCase):
+    """Tests of Subset objects"""
 
     def setUp(self):
 

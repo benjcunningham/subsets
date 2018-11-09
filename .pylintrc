@@ -1,0 +1,4 @@
+[MESSAGE CONTROL]
+# protected-access:
+#   Disabled since it is only occurs in tests.
+disable=protected-access
