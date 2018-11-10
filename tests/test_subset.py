@@ -3,6 +3,7 @@
 import unittest
 import pydub
 import srt
+import pandas as pd
 from subsets import Subset
 
 
@@ -94,6 +95,16 @@ class TestSubset(unittest.TestCase):
         self.assertIsInstance(sub.audio, pydub.AudioSegment)
         self.assertIsInstance(sub.splits, list)
         self.assertIsInstance(sub.splits[0], pydub.AudioSegment)
+
+
+    def test_to_table(self):
+        """Convert subs to data frame"""
+
+        sub = Subset(**self.args)
+        table = sub.to_table()
+
+        self.assertIsInstance(table, pd.DataFrame)
+        self.assertEqual(table.shape, (2, 5))
 
 
 if __name__ == "__main__":
