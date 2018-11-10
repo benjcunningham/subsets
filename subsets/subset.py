@@ -16,12 +16,15 @@ class Subset():
     def __init__(self,
                  subs=None,
                  audio=None,
-                 subs_kwargs={},
-                 audio_kwargs={}):
+                 subs_kwargs=None,
+                 audio_kwargs=None):
 
         self.subs = None
         self.audio = None
         self.splits = None
+
+        subs_kwargs = subs_kwargs or {}
+        audio_kwargs = audio_kwargs or {}
 
         if subs:
             self.read_subs(subs, **subs_kwargs)
