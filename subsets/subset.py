@@ -13,17 +13,21 @@ class Subset():
     loaded subtitles.
     """
 
-    def __init__(self, subs=None, audio=None, **kwargs):
+    def __init__(self,
+                 subs=None,
+                 audio=None,
+                 subs_kwargs={},
+                 audio_kwargs={}):
 
         self.subs = None
         self.audio = None
         self.splits = None
 
         if subs:
-            self.read_subs(subs, **kwargs)
+            self.read_subs(subs, **subs_kwargs)
 
         if audio:
-            self.read_audio(audio, **kwargs)
+            self.read_audio(audio, **audio_kwargs)
 
         if self.subs and self.audio:
             self.split_audio()

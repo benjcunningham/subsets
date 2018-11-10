@@ -80,5 +80,19 @@ class TestSubset(unittest.TestCase):
         self.assertIsInstance(sub.splits[0], pydub.AudioSegment)
 
 
+    def test_init_kwargs(self):
+        """Initialize object with kwargs"""
+
+        subs_kwargs = {"encoding": "utf-8"}
+        audio_kwargs = {"format": "ogg"}
+        sub = Subset(**self.path,
+                     subs_kwargs=subs_kwargs,
+                     audio_kwargs=audio_kwargs)
+
+        self.assertTrue(hasattr(sub, "subs"))
+        self.assertTrue(hasattr(sub, "audio"))
+        self.assertTrue(hasattr(sub, "splits"))
+
+
 if __name__ == "__main__":
     unittest.main()
