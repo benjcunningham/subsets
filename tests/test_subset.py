@@ -65,5 +65,20 @@ class TestSubset(unittest.TestCase):
         self.assertIsInstance(sub.splits[0], pydub.AudioSegment)
 
 
+    def test_init(self):
+        """Initialize object with subs and audio"""
+
+        sub = Subset(**self.path)
+
+        self.assertIn("subs", dir(sub))
+        self.assertIsInstance(sub.subs, list)
+        self.assertIsInstance(sub.subs[0], srt.Subtitle)
+        self.assertIn("audio", dir(sub))
+        self.assertIsInstance(sub.audio, pydub.AudioSegment)
+        self.assertIn("splits", dir(sub))
+        self.assertIsInstance(sub.splits, list)
+        self.assertIsInstance(sub.splits[0], pydub.AudioSegment)
+
+
 if __name__ == "__main__":
     unittest.main()
