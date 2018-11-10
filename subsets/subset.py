@@ -2,6 +2,7 @@
 """
 import srt
 import pydub
+import pandas as pd
 from subsets.utils import bound
 
 
@@ -69,6 +70,18 @@ class Subset():
         self.splits = [self._split(bnd) for bnd in bounds]
 
         return self
+
+
+    def to_table(self):
+        """Convert subs to tabular format
+
+        Converts the object's subtitles to a data frame.
+        """
+
+        subs_dict = [sub.__dict__ for sub in self.subs]
+        table = pd.DataFrame.from_dict(subs_dict)
+
+        return table
 
 
     def _split(self, bounds):
