@@ -44,9 +44,9 @@ def create_kwargs(args):
     """
 
     kwargs = {
-        "subs_kwargs": {
+        "audio_kwargs": {
             "format": args.format},
-        "audio_kwargs": {}}
+        "subs_kwargs": {}}
 
     if hasattr(args, "encoding"):
         kwargs["subs_kwargs"]["encoding"] = args.encoding
