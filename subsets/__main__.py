@@ -61,7 +61,7 @@ def create_subset(args):
     """
 
     kwargs = create_kwargs(args)
-    sub = Subset(args.subs, args.audio)
+    sub = Subset(args.subs, args.audio, **kwargs)
 
     return sub
 
