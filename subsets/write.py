@@ -9,10 +9,10 @@ def write_splits(sub, path, format, prefix="subtitle", **kwargs):
     Writes splits in a Subset object to disk.
     """
 
-    files = [f"{prefix}_{audio.index}.{format}" for audio in sub.audio]
-    paths = [os.join.path(path, file) for file in files]
+    files = [f"{prefix}_{sub.index}.{format}" for sub in sub.subs]
+    paths = [os.path.join(path, file) for file in files]
 
-    for audio, path in enumerate(subs.splits, paths):
+    for audio, path in zip(sub.splits, paths):
         audio.export(path, format=format, **kwargs)
 
     return paths
