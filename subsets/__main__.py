@@ -1,9 +1,10 @@
 """Subsets
 """
-
 import argparse
+import os
 import sys
 from .subset import Subset
+from .write import write_splits
 
 
 def get_args():
@@ -15,13 +16,20 @@ def get_args():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--subs", metavar="path to subtitles",
-                        help="Subtitle to use.")
+                        help="Subtitle to use.", required=True)
 
     parser.add_argument("--audio", metavar="path to audio",
-                        help="Audio to use.")
+                        help="Audio to use.", required=True)
+
+    parser.add_argument("--path", metavar="path of output",
+                        help="Where to write output.", required=True)
 
     parser.add_argument("--format", metavar="audio format",
-                        help="Format of audio.", required=False)
+                        help="Format of audio.", required=True)
+
+    parser.add_argument("--prefix", metavar="output file prefix",
+                        help="Prefix of output files.", required=False,
+                        default="subtitle")
 
     parser.add_argument("--encoding", metavar="subtitle encoding",
                         help="Encoding of subtitle.", required=False)
@@ -35,13 +43,13 @@ def create_kwargs(args):
     Creates keyword arg dictionaries.
     """
 
-    kwargs = {"subs_kwargs": {}, "audio_kwargs": {}}
+    kwargs = {
+        "subs_kwargs": {
+            "format": args.format},
+        "audio_kwargs": {}}
 
     if hasattr(args, "encoding"):
         kwargs["subs_kwargs"]["encoding"] = args.encoding
-
-    if hasattr(args, "format"):
-        kwargs["audio_kwargs"]["format"] = args.format
 
     return kwargs
 
@@ -53,7 +61,7 @@ def create_subset(args):
     """
 
     kwargs = create_kwargs(args)
-    sub = Subset(args.subs, args.audio, **kwargs)
+    sub = Subset(args.subs, args.audio)
 
     return sub
 
@@ -72,9 +80,19 @@ def main():
         parser.print_help()
         sys.exit(1)
 
+    # Create the Subset object
     sub = create_subset(args)
 
-    # TODO: Write subs to CSV, audio splits to file
+    # Write the audio splits to disk
+    paths = write_splits(sub, args.path, args.format, args.prefix)
+
+    # Create a tabular view of the subtitle text
+    table = sub.to_table()
+    table["path"] = paths
+
+    # Write the subtitle table to disk
+    path = os.path.join(args.path, f"{args.prefix}.csv")
+    table.to_csv(path, index=False)
 
 
 if __name__ == "__main__":
