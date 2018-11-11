@@ -2,7 +2,7 @@
 """
 import unittest
 import tempfile
-from subsets import write
+from subsets import Subset, write
 
 
 class TestWrite(unittest.TestCase):
@@ -22,7 +22,7 @@ class TestWrite(unittest.TestCase):
     def test_write_splits(self):
         """Write audio splits to disk"""
 
-        paths = write_splits(self.sub, self.tmp_dir, "ogg")
+        paths = write.write_splits(self.sub, self.tmp_dir, "ogg")
 
         self.assertEqual(len(paths), len(self.sub))
 
