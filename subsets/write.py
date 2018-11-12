@@ -13,6 +13,7 @@ def write_splits(sub, path, fmt, prefix="subtitle", **kwargs):
     paths = [os.path.join(path, file) for file in files]
 
     for audio, file in zip(sub.splits, paths):
-        audio.export(file, fmt, **kwargs)
+        out = audio.export(file, fmt, **kwargs)
+        out.close()
 
     return paths
