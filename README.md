@@ -1,5 +1,7 @@
 # subsets
 
+[![Build Status](https://travis-ci.org/benjcunningham/subsets.svg?branch=master)](https://travis-ci.org/benjcunningham/subsets)
+
 Create speech-to-text datasets from subtitles.
 
 ## Installation
