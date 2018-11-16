@@ -16,4 +16,10 @@ setup(
     test_suite="tests",
     install_requires=["srt",
                       "pydub"],
-    packages=find_packages())
+    packages=find_packages(),
+    entry_points={
+        "console_scripts": [
+            "subsets=subsets.__main__:main"
+        ]
+    },
+)
