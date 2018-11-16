@@ -4,7 +4,7 @@ Create speech-to-text datasets from subtitles.
 
 ## Installation
 
-```python
+```bash
 git clone https://github.com/benjcunningham/subsets
 cd subsets
 python setup.py install
