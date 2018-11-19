@@ -13,8 +13,8 @@ class TestSubset(unittest.TestCase):
     def setUp(self):
 
         self.args = {
-            "subs": "tests/test_files/test_sub.srt",
-            "audio": "tests/test_files/gallop.ogg"
+            "subs": "tests/test_files/nge.srt",
+            "audio": "tests/test_files/nge.aac"
         }
 
 
@@ -82,7 +82,7 @@ class TestSubset(unittest.TestCase):
         """Initialize object with kwargs"""
 
         subs_kwargs = {"encoding": "utf-8"}
-        audio_kwargs = {"format": "ogg"}
+        audio_kwargs = {"format": "aac"}
         sub = Subset(**self.args,
                      subs_kwargs=subs_kwargs,
                      audio_kwargs=audio_kwargs)
@@ -104,7 +104,7 @@ class TestSubset(unittest.TestCase):
         table = sub.to_table()
 
         self.assertIsInstance(table, pd.DataFrame)
-        self.assertEqual(table.shape, (2, 5))
+        self.assertEqual(table.shape, (3, 5))
 
 
 if __name__ == "__main__":

@@ -11,7 +11,7 @@ class TestUtils(unittest.TestCase):
 
     def setUp(self):
 
-        path = "tests/test_files/test_sub.srt"
+        path = "tests/test_files/nge.srt"
         with open(path, "r") as file:
             self.subs = list(srt.parse(file.read()))
 
@@ -29,7 +29,7 @@ class TestUtils(unittest.TestCase):
     def test_bound(self):
         """Get time bounds of subtitle"""
 
-        expect = (137440, 140375)
+        expect = (90, 1060)
         result = utils.bound(self.subs[0])
 
         self.assertEqual(result, expect)
