@@ -11,8 +11,8 @@ class TestWrite(unittest.TestCase):
     def setUp(self):
 
         args = {
-            "subs": "tests/test_files/test_sub.srt",
-            "audio": "tests/test_files/gallop.ogg"
+            "subs": "tests/test_files/nge.srt",
+            "audio": "tests/test_files/nge.aac"
         }
 
         self.sub = Subset(**args)
